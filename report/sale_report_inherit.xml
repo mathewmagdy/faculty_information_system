@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="sale_report_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@class='page'] /h2[@class='mt-4']" position="inside">
+            <div>
+                <strong>Test Inherit in This Report</strong>
+            </div>
+        </xpath>
+    </template>
+</odoo>

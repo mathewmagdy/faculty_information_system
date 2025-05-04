@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_faculty_student_form" model="ir.ui.view">
+      <field name="name">faculty.student.form</field>
+      <field name="model">faculty.student</field>
+      <field name="arch" type="xml">
+          <form>
+            <button name="action_confirm" string="Confirm" type="object" class="oe_stat_button"/>
+            <button name="action_done" string="Done" type="object" class="oe_stat_button"/>
+            <button name="action_cancel" string="Cancel" type="object" class="oe_stat_button"/>
+            <button name="action_reset" string="Reset" type="object" class="oe_stat_button"/>
+            <sheet>
+                <widget name="web_ribbon" title="Confirmed" bg_color="bg-primary" attrs="{'invisible':[('state','!=','confirm')]}"/>
+                <widget name="web_ribbon" title="Done" bg_color="bg-success " attrs="{'invisible':[('state','!=','done')]}"/>
+                <widget name="web_ribbon" title="Cancelled" bg_color="bg-danger" attrs="{'invisible':[('state','!=','cancel')]}"/>
+                <div class="oe_title">
+                  <h1>
+                    <field name="ref" readonly="1"/>
+                  </h1>
+                </div>
+                <group>
+                    <field name="state"/>
+                    <field name="id_student"/>
+                    <field name="name"/>
+                    <field name="date_of_birth"/>
+                    <field name="age"/>
+                    <field name="year" on_change="onchange_year()"/>
+                    <field name="semester"/>
+                    <field name="department_id" options="{'no_open':True ,'no_create':True}" />
+                    <field name="subject_id"/>
+                    <field name="gpa"/>
+                    <field name="semester_fees"/>
+                </group>
+            </sheet>
+            <!-- Chatter -->
+            <div class="oe_chatter">
+              <field name="message_follower_ids"/>
+              <field name="message_ids"/>
+            </div>
+          </form>
+      </field>
+    </record>
+
+    <record id="view_faculty_student_tree" model="ir.ui.view">
+      <field name="name">faculty.student.tree</field>
+      <field name="model">faculty.student</field>
+      <field name="arch" type="xml">
+          <tree>
+            <field name="ref"/>
+            <field name="name"/>
+            <field name="age"/>
+            <field name="year"/>
+            <field name="department_id"/>
+            <field name="gpa"/>
+            <field name="state"/>
+          </tree>
+      </field>
+    </record>
+
+    <record id="view_faculty_student_search" model="ir.ui.view">
+      <field name="name">faculty.student.search</field>
+      <field name="model">faculty.student</field>
+      <field name="arch" type="xml">
+          <search>
+            <!-- <field name="ref"/> -->
+            <field name="name" filter_domain="['|',('name','ilike',self),('ref','ilike',self)]"/>
+            <field name="age"/>
+            <field name="gpa"/>
+            <field name="department_id" filter_domain="['|',('department_id.department_name','ilike',self),('ref','ilike',self)]"/>
+          </search>
+      </field>
+    </record>
+
+    <record id="action_faculty_student" model="ir.actions.act_window">
+       <field name="name">Student</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">faculty.student</field>
+       <field name="view_mode">tree,form</field>
+       <field name="search_view_id" ref="faculty.view_faculty_student_search"/>
+    </record>
+
+    <menuitem id="menu_faculty_student" parent="menu_faculty_operation" name="Student" action="action_faculty_student" sequence="10"/>
+</odoo>

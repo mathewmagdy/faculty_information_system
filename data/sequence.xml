@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="sequence_faculty_student" model="ir.sequence">
+            <field name="name">Faclty Student Sequence</field>
+            <field name="code">faculty.student</field>
+            <field name="prefix">ST</field>
+            <field name="padding">3</field>
+        </record>
+    </data>
+    <data>
+        <record id="sequence_faculty_department" model="ir.sequence">
+            <field name="name">Faclty Department Sequence</field>
+            <field name="code">faculty.department</field>
+            <field name="prefix">DP</field>
+            <field name="padding">3</field>
+        </record>
+    </data>
+    <data>
+        <record id="sequence_faculty_subject" model="ir.sequence">
+            <field name="name">Faclty Subject Sequence</field>
+            <field name="code">faculty.subject</field>
+            <field name="prefix">SB</field>
+            <field name="padding">3</field>
+        </record>
+    </data>
+</odoo>

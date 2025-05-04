@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_faculty_subject_form" model="ir.ui.view">
+      <field name="name">faculty.subject.form</field>
+      <field name="model">faculty.subject</field>
+      <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                        <field name="ref" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="subject_name"/>
+                        <field name="department_id" options="{'no_open':True ,'no_create':True}" />
+                        <field name="year"/>
+                        <field name="semester"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="view_faculty_subject_tree" model="ir.ui.view">
+      <field name="name">faculty.subject.tree</field>
+      <field name="model">faculty.subject</field>
+      <field name="arch" type="xml">
+            <tree>
+                <field name="ref"/>
+                <field name="subject_name"/>
+                <field name="department_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_faculty_subject_search" model="ir.ui.view">
+      <field name="name">faculty.subject.search</field>
+      <field name="model">faculty.subject</field>
+      <field name="arch" type="xml">
+            <search>
+                <field name="subject_name" filter_domain="['|',('subject_name','ilike',self),('ref','ilike',self)]"/>
+                <field name="department_id" filter_domain="['|',('department_id.department_name','ilike',self),('ref','ilike',self)]"/>
+             </search>
+        </field>
+    </record>
+
+    <record id="action_faculty_subject" model="ir.actions.act_window">
+       <field name="name">Subject</field>
+       <field name="type">ir.actions.act_window</field>
+       <field name="res_model">faculty.subject</field>
+       <field name="view_mode">tree,form</field>
+       <field name="search_view_id" ref="faculty.view_faculty_subject_search"/>
+    </record>
+
+    <menuitem id="menu_faculty_subject" parent="menu_faculty_operation" name="Subject" action="action_faculty_subject" sequence="10"/>
+
+
+</odoo>

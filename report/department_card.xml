@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_department">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <h2>Department Card</h2>
+                <img src="/faculty/static/img/24.png"/>
+                <table class="table table-sm o_main_table table-borderless mt-4">
+                    <thead>
+                        <tr>
+                            <th class="text-start">Department Name</th>
+                            <th class="text-end">Reference</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="line">
+                            <tr class="bg-200 fw-bold o_line_section">
+                                <td><span t-field="line.department_name"/></td>
+                                <td class="text-end"><span t-field="line.ref"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </t>
+        </t>
+    </template>
+</odoo>

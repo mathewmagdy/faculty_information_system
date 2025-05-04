@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <report id="report_department_card" 
+    string="Department Card" 
+    model="faculty.department" 
+    report_type="qweb-pdf" 
+    name="faculty.report_department" 
+    file="faculty.report_department"/>
+</odoo>
